@@ -88,10 +88,10 @@ class OverlayContainerCoordinator {
             container.moveOverlay(toNotchAt: index, animated: animated)
         }
         if changes.contains(.scrollView) {
-            CATransaction.setCompletionBlock { [weak container] in
-                guard let overlay = container?.topViewController?.view else { return }
+            //CATransaction.setCompletionBlock { [weak container] in // khsug 주석처리 해야지 Navigation 2Depth이상이면 스크롤 안되는 문제로 수정
+                guard let overlay = container?.topViewController?.view else { return } 
                 container?.drivingScrollView = state.drivingScrollViewProxy.findScrollView(in: overlay)
-            }
+            //}
         }
         self.state = state
         if changes.contains(.layout) && !animated {
